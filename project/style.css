@@ -1,0 +1,78 @@
+body {
+    font-family: "Gowun Batang", serif;
+
+}
+h1,h2 {
+    font-family: "Lora", serif;
+    color: #F2F2F2;
+}
+
+nav {
+    background-color: #45455F;
+    margin: 0;
+}
+nav ul {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    border-bottom: 1px solid #394a5b;
+    padding: 0em;
+}
+nav li {
+    margin-left: 0;
+}
+
+nav a {
+    text-decoration: none;
+    display: block;
+    padding: 0.5em 1em;
+    border: 1px solid #394a5b;
+    color: #F2F2F2;
+    background-color: #45455F;
+    border-bottom: none;
+}
+ nav a:hover {
+    background-color: #fffafa;
+    color: #45455F;
+}
+
+header div {
+    background-color: #45455F;
+    border: 1px solid #394a5b;
+    padding: 1em;
+    color:#F2F2F2;
+    
+}
+header div p {
+    background-color: #45455F;
+    color:#F2F2F2;
+    
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+figure { 
+    width: 400px;
+    background-color: #45455F;
+    padding: 1em;
+    border: 1px solid #394a5b;
+    margin: 18px;
+    color:#F2F2F2;
+  }
+  
+
+a:link {
+    color: #E5E1E1 ;
+  }
+
+a:hover {
+    color: #7189a1;
+}
+a:visited { 
+    color: #DCE3EA;
+}
+
