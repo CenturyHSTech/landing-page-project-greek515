@@ -13,49 +13,48 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.9'
-    
-    - name: Create virtual environment
-      run: python -m venv venv
-
-    - name: 'Test HTML'
+    - name: Test HTML
       id: test-html
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: 'Test HTML'
-        setup-command: . ./venv/bin/activate && pip install -r requirements.txt
-        command: . ./venv/bin/activate && pytest tests/test_html.py
+        test-name: Test HTML
+        setup-command: pip install webcode-tk file-clerk pytest
+        command: pytest tests/test_html.py
         timeout: 10
         max-score: 3
-
-    - name: 'Test CSS'
+    - name: Test HTML Exceeds
+      id: test-html-exceeds
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Test HTML Exceeds
+        setup-command: pip install webcode-tk file-clerk pytest
+        command: pytest tests/test_html_exceeds.py
+        timeout: 10
+        max-score: 1
+    - name: Test CSS
       id: test-css
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: 'Test CSS'
-        setup-command: . ./venv/bin/activate && pip install -r requirements.txt
-        command: . ./venv/bin/activate && pytest tests/test_css.py
+        test-name: Test CSS
+        setup-command: pip install webcode-tk file-clerk pytest
+        command: pytest tests/test_css.py
         timeout: 10
         max-score: 3
-
-    - name: 'Test Exceeds'
-      id: test-exceeds
+    - name: Test CSS Exceeds
+      id: test-css-exceeds
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: 'Test Exceeds'
-        setup-command: . ./venv/bin/activate && pip install -r requirements.txt
-        command: . ./venv/bin/activate && pytest tests/test_exceeds.py
+        test-name: Test CSS Exceeds
+        setup-command: pip install webcode-tk file-clerk pytest
+        command: pytest tests/test_css_exceeds.py
         timeout: 10
-        max-score: 2
-
+        max-score: 1
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         TEST-HTML_RESULTS: "${{steps.test-html.outputs.result}}"
+        TEST-HTML-EXCEEDS_RESULTS: "${{steps.test-html-exceeds.outputs.result}}"
         TEST-CSS_RESULTS: "${{steps.test-css.outputs.result}}"
+        TEST-CSS-EXCEEDS_RESULTS: "${{steps.test-css-exceeds.outputs.result}}"
       with:
-        runners: test-html,test-css
+        runners: test-html,test-html-exceeds,test-css,test-css-exceeds
